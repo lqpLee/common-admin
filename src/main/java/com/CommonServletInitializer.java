@@ -1,4 +1,4 @@
-package com.common.system;
+package com;
 
 import com.CommonAdminApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
