@@ -1,5 +1,6 @@
 package com.common.system;
 
+import com.CommonAdminApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 

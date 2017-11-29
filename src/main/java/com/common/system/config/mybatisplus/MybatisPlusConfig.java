@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
  * ProjectName:Common-admin
  */
 @Configuration
-@MapperScan(value = "com.common.system.mapper")
+@MapperScan(value = "com.*.*.mapper")
 public class MybatisPlusConfig {
     /**
      * mybatis-plus分页插件<br>
