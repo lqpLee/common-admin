@@ -12,13 +12,14 @@
                         </a>
                         <#if menu.child??>
                             <ul class="treeview-menu">
-                            <#list menu.child as child>
-                                <li>
-                                    <a target="navTab" <#if child.url="druid" || child.url="doc.html"||child.url="swagger-ui.html"> target_type="iframe" fresh="false" </#if>href="${child.url}">
-                                        <i class="fa fa-inbox"></i> <span>${child.name}</span>
-                                    </a>
-                                </li>
-                            </#list>
+                                <#list menu.child as child>
+                                    <li>
+                                        <a target="navTab" <#if child.url="druid" || child.url="doc.html"||child.url="swagger-ui.html">
+                                           target_type="iframe" fresh="false" </#if>href="${child.url}">
+                                            <i class="fa fa-inbox"></i> <span>${child.name}</span>
+                                        </a>
+                                    </li>
+                                </#list>
                             </ul>
                         </#if>
                     </li>
@@ -31,9 +32,9 @@
 
 <#macro header>
 <header class="main-header">
-    <a href="index2.html" class="logo">
-        <span class="logo-mini"><b>Rock</b></span>
-        <span class="logo-lg"><b>Rock</b></span>
+    <a href="/toHome" class="logo">
+        <span class="logo-mini"><b>Lee</b></span>
+        <span class="logo-lg"><b>Lee</b></span>
     </a>
     <nav class="navbar navbar-static-top">
         <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
@@ -45,20 +46,21 @@
                 <li class="dropdown user user-menu">
                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="adminlte/dist/img/user2-160x160.jpg" class="user-image" alt="User Image"> <span
-                            class="hidden-xs">Rock管理后台</span>
+                            class="hidden-xs">${user.name}</span>
                     </a>
                     <ul class="dropdown-menu">
                         <li class="user-header">
                             <img src="adminlte/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                             <p>
-                                ${user.username!}
+                            ${user.username!}
                                 <small>${user.createTime?string('yyyy-MM-dd HH:mm:ss')}加入</small>
                             </p>
                         </li>
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="/user/goModifyPwd/${user.id}" target="modal" modal="lg"  class="btn btn-default btn-flat">密码修改</a>
+                                <a href="/user/goModifyPwd/${user.id}" target="modal" modal="lg"
+                                   class="btn btn-default btn-flat">密码修改</a>
                             </div>
                             <div class="pull-right">
                                 <a href="/logout" class="btn btn-default btn-flat">安全退出</a>
@@ -78,13 +80,13 @@
 </#macro>
 
 <#macro footer>
-<footer class="main-footer">
+<#--<footer class="main-footer">
     <div class="pull-right hidden-xs">
         <b>Version</b> 2.3.6
     </div>
     <strong>Copyright &copy; 2017-2026 <a href="https://github.com/babylikebird/common-admin">Yang</a>.
     </strong> All rights reserved.
-</footer>
+</footer>-->
 </#macro>
 
 <#macro style>

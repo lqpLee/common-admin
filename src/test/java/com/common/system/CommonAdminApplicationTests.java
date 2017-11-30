@@ -1,15 +1,14 @@
 package com.common.system;
 
-import com.common.system.entity.RcBaseArea;
 import com.common.system.entity.TreeGridNode;
 import com.common.system.entity.TreeGridWrapper;
 import com.common.system.service.RcBaseAreaService;
 import com.common.system.service.TreeGridService;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.google.gson.reflect.TypeToken;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageInfo;
+import com.server.company.entity.Company;
+import com.server.company.mapper.CompanyMapper;
+import com.server.company.service.CompanyService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -25,56 +24,67 @@ import java.util.List;
 @SpringBootTest
 public class CommonAdminApplicationTests {
 
-	Logger LOG = LoggerFactory.getLogger("CommonAdminApplicationTests");
+    Logger LOG = LoggerFactory.getLogger("CommonAdminApplicationTests");
 
-	@Autowired
-	private RcBaseAreaService baseAreaService;
-	@Autowired
-	private TreeGridService treeGridService;
+    @Autowired
+    private RcBaseAreaService baseAreaService;
+    @Autowired
+    private TreeGridService treeGridService;
 
-	@Test
-	public void contextLoads() {
-		List<TreeGridNode> list = treeGridService.getMenuTreeGridNodes();
-		TreeGridWrapper wrapper = new TreeGridWrapper();
-		wrapper.setRows(list);
-		wrapper.setTotal(list.size());
-		LOG.info(wrapper.toString());
-	}
-//	@Test
-//	public void Insert(){
-//		System.out.println("sdadada");
-//		JsonObject main = new JsonParser().parse(AreaData.AREA).getAsJsonObject();
-//		JsonArray jsonArray = main.getAsJsonArray("children");
-//		RcBaseArea baseArea = new Gson().fromJson(AreaData.AREA,new TypeToken<RcBaseArea>(){}.getType());
-//		//第一级
-//		baseArea.setCreateTime(new Date());
-//		baseArea.setLevel(1);
-//		baseArea.setParentCode("0");
-//		baseAreaService.insert(baseArea);
-//		//第二级
-//		List<RcBaseArea> childList  = baseArea.getChildren();
-//		if (childList != null){
-//			for (RcBaseArea child:childList
-//					) {
-//				child.setCreateTime(new Date());
-//				child.setParentCode(baseArea.getCode());
-//				child.setLevel(2);
-//				baseAreaService.insert(child);
-//				//第三集
-//				List<RcBaseArea> sunList = child.getChildren();
-//				if (sunList != null){
-//					for (RcBaseArea sun:sunList
-//							) {
-//						sun.setCreateTime(new Date());
-//						sun.setParentCode(child.getCode());
-//						sun.setLevel(3);
-//						baseAreaService.insert(sun);
-//					}
-//				}
-//
-//			}
-//		}
-//
-//
-//	}
+    @Autowired
+    private CompanyMapper companyMapper;
+
+    @Autowired
+    private CompanyService companyService;
+
+    @Test
+    public void contextLoads() {
+        List<TreeGridNode> list = treeGridService.getMenuTreeGridNodes();
+        TreeGridWrapper wrapper = new TreeGridWrapper();
+        wrapper.setRows(list);
+        wrapper.setTotal(list.size());
+        LOG.info(wrapper.toString());
+    }
+
+    @Test
+    public void testInsertCompany() {
+        Company company = new Company();
+        company.setId("123");
+        company.setName("测试公司");
+        company.setSimpleName("公司");
+        company.setCode("code");
+        company.setCreateTime(new Date());
+        company.setCreateUser("123");
+        companyMapper.insert(company);
+    }
+
+    @Test
+    public void testSelectCompany() {
+        Company company = companyMapper.selectByPrimaryKey("123");
+        System.out.println(company);
+    }
+
+    @Test
+    public void testSelectList(){
+        Company company = new Company();
+        company.setIsDelete(0);
+        company.setName("测试");
+        List<Company> companyList = companyMapper.selectList(company);
+        System.out.println(companyList);
+    }
+
+    @Test
+    public void testCompanyPageList(){
+        Company company = new Company();
+        company.setIsDelete(0);
+        company.setName("测试");
+        PageInfo<Company> page = companyService.listForPage(1, 10, company);
+        System.out.println(page);
+        List<Company> companyList = page.getList();
+        System.out.println(companyList);
+        for(Company company1:companyList){
+            System.out.println(company1);
+        }
+    }
+
 }

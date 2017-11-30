@@ -111,6 +111,23 @@ public class ShiroUser implements Serializable{
     }
 
     public void setRoleValues(List<String> roleValues) {
+
         this.roleValues = roleValues;
+    }
+
+    @Override
+    public String toString() {
+        return "ShiroUser{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", name='" + name + '\'' +
+                ", deptId=" + deptId +
+                ", deptName='" + deptName + '\'' +
+                ", createTime=" + createTime +
+                ", roleList=" + roleList +
+                ", privilegeList=" + privilegeList +
+                ", permissionValues=" + permissionValues +
+                ", roleValues=" + roleValues +
+                '}';
     }
 }

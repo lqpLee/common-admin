@@ -14,38 +14,43 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 
-/**
- * Created by Mr.Yangxiufeng on 2017/6/15.
- * Time:15:58
- * ProjectName:Common-admin
- */
 @Controller
-public class LoginController extends BaseController{
+public class LoginController extends BaseController {
     /**
      * 进入登录页面
      */
     @RequestMapping(value = {"/login"}, method = RequestMethod.GET)
-    public ModelAndView getLogin(ModelAndView modelAndView){
+    public ModelAndView getLogin(ModelAndView modelAndView) {
         modelAndView.setViewName("/system/login");
         return modelAndView;
     }
+
     @RequestMapping(value = {"/postLogin"}, method = RequestMethod.POST)
-    public String postLogin(@RequestParam(required = true) String username, @RequestParam(required = true) String password, ModelAndView modelAndView, HttpSession session){
+    public String postLogin(@RequestParam(required = true) String username, @RequestParam(required = true) String password, ModelAndView modelAndView, HttpSession session) {
         Subject subject = ShiroKit.getSubject();
-        UsernamePasswordToken token = new UsernamePasswordToken(username,password.toCharArray());
+        UsernamePasswordToken token = new UsernamePasswordToken(username, password.toCharArray());
         try {
             subject.login(token);
             ShiroUser user = (ShiroUser) subject.getPrincipal();
-            modelAndView.addObject("user",user);
-            session.setAttribute("user",user);
+            modelAndView.addObject("user", user);
+            session.setAttribute("user", user);
         } catch (AuthenticationException e) {
             e.printStackTrace();
         }
         return REDIRECT + "/";
     }
-    @RequestMapping(value = "logout",method = RequestMethod.GET)
-    public String logout(){
+
+    @RequestMapping(value = "logout", method = RequestMethod.GET)
+    public String logout() {
         ShiroKit.getSubject().logout();
+        return REDIRECT + "/";
+    }
+
+    /**
+     * @return
+     */
+    @RequestMapping(value = "toHome", method = RequestMethod.GET)
+    public String toHome() {
         return REDIRECT + "/";
     }
 }

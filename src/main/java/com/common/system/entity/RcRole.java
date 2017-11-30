@@ -75,8 +75,20 @@ public class RcRole implements Serializable{
     }
 
     public void setStatus(Integer status) {
+
         this.status = status;
     }
 
-
+    @Override
+    public String toString() {
+        return "RcRole{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", value='" + value + '\'' +
+                ", tips='" + tips + '\'' +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", status=" + status +
+                '}';
+    }
 }

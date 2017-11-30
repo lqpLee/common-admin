@@ -34,4 +34,13 @@ public class RcPrivilege implements Serializable{
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
+
+    @Override
+    public String toString() {
+        return "RcPrivilege{" +
+                "roleId=" + roleId +
+                ", menuId='" + menuId + '\'' +
+                ", createTime=" + createTime +
+                '}';
+    }
 }

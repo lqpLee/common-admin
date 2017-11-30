@@ -1,15 +1,10 @@
 package com.server.company.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * Created by liqiangpeng on 2017/11/29.
- */
 public class Company implements Serializable {
-
     private String id;
 
     private String name;
@@ -20,19 +15,22 @@ public class Company implements Serializable {
 
     private Integer sort;
 
-    @JsonIgnore
     private Date createTime;
-    @JsonIgnore
+
     private Date updateTime;
 
-    private Boolean isDelete;
+    private String createUser;
+
+    private String updateUser;
+
+    private Integer isDelete;
 
     public String getId() {
         return id;
     }
 
     public void setId(String id) {
-        this.id = id;
+        this.id = id == null ? null : id.trim();
     }
 
     public String getName() {
@@ -40,7 +38,7 @@ public class Company implements Serializable {
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = name == null ? null : name.trim();
     }
 
     public String getSimpleName() {
@@ -48,7 +46,7 @@ public class Company implements Serializable {
     }
 
     public void setSimpleName(String simpleName) {
-        this.simpleName = simpleName;
+        this.simpleName = simpleName == null ? null : simpleName.trim();
     }
 
     public String getCode() {
@@ -56,7 +54,7 @@ public class Company implements Serializable {
     }
 
     public void setCode(String code) {
-        this.code = code;
+        this.code = code == null ? null : code.trim();
     }
 
     public Integer getSort() {
@@ -83,12 +81,28 @@ public class Company implements Serializable {
         this.updateTime = updateTime;
     }
 
-    public Boolean getDelete() {
+    public String getCreateUser() {
+        return createUser;
+    }
+
+    public void setCreateUser(String createUser) {
+        this.createUser = createUser == null ? null : createUser.trim();
+    }
+
+    public String getUpdateUser() {
+        return updateUser;
+    }
+
+    public void setUpdateUser(String updateUser) {
+        this.updateUser = updateUser == null ? null : updateUser.trim();
+    }
+
+    public Integer getIsDelete() {
         return isDelete;
     }
 
-    public void setDelete(Boolean delete) {
-        isDelete = delete;
+    public void setIsDelete(Integer isDelete) {
+        this.isDelete = isDelete;
     }
 
     @Override
@@ -101,6 +115,8 @@ public class Company implements Serializable {
                 ", sort=" + sort +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
+                ", createUser='" + createUser + '\'' +
+                ", updateUser='" + updateUser + '\'' +
                 ", isDelete=" + isDelete +
                 '}';
     }
