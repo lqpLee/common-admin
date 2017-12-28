@@ -22,6 +22,8 @@ import java.util.Map;
 import java.util.UUID;
 
 /**
+ * 公司
+ * <p>
  * Created by liqiangpeng on 2017/11/29.
  */
 @Controller
@@ -31,6 +33,12 @@ public class CompanyController {
     @Autowired
     private CompanyService companyService;
 
+    /**
+     * 跳转页
+     *
+     * @param modelAndView 模型视图
+     * @return
+     */
     @RequestMapping(value = "list", method = RequestMethod.GET)
     public ModelAndView list(ModelAndView modelAndView) {
         modelAndView.setViewName("/system/company/list");
@@ -40,8 +48,8 @@ public class CompanyController {
     /**
      * 分页查询
      *
-     * @param start
-     * @param pageSize
+     * @param start    开始页
+     * @param pageSize 数据条数
      * @return
      */
     @ResponseBody
@@ -56,7 +64,7 @@ public class CompanyController {
     /**
      * 跳转到添加页面
      *
-     * @param modelAndView
+     * @param modelAndView 模型视图
      * @return
      */
     @RequestMapping(value = "add", method = RequestMethod.GET)
@@ -68,8 +76,8 @@ public class CompanyController {
     /**
      * 保存数据
      *
-     * @param company
-     * @param session
+     * @param company 模型
+     * @param session 当前登陆
      * @return
      */
     @RequestMapping(value = "save", method = RequestMethod.POST)

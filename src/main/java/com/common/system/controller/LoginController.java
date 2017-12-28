@@ -47,6 +47,8 @@ public class LoginController extends BaseController {
     }
 
     /**
+     * 点击logo 重新回到主页
+     *
      * @return
      */
     @RequestMapping(value = "toHome", method = RequestMethod.GET)

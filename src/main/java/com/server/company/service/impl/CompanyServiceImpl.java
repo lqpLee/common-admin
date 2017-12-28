@@ -26,10 +26,18 @@ public class CompanyServiceImpl implements CompanyService {
         return companyMapper.insert(company);
     }
 
+    /**
+     * 分页查询
+     *
+     * @param pageNum
+     * @param pageSize
+     * @param company
+     * @return
+     */
     @Override
     public PageInfo<Company> listForPage(Integer pageNum, Integer pageSize, Company company) {
         PageHelper.startPage(pageNum, pageSize, true);
-        List<Company> companyList = companyMapper.selectList(company);
+        List<Company> companyList = companyMapper.selectList(company);//自定义查询方法
         return new PageInfo<>(companyList);
     }
 }

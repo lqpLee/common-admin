@@ -20,24 +20,7 @@
 * 模版引擎：freemarker
 * 前端UI框架：JQuery2.2.3 + bootstrap3 + AdminLte2.3.6 + Ztree
 
-## 版权说明
-使用 Apache License 2.0 协议.
-
-## 其他开源项目
-
-
-## UI效果图
-
-<img  src="https://github.com/NewBeeECC/common-admin/blob/master/art/login.png"/><br/>
-
-<img src="https://github.com/babylikebird/common-admin/blob/master/art/2.png"/><br/>
-
-<img src="https://github.com/babylikebird/common-admin/blob/master/art/3.png"/><br/>
-
-<img src="https://github.com/babylikebird/common-admin/blob/master/art/4.png"/><br/>
-
-<img src="https://github.com/babylikebird/common-admin/blob/master/art/5.png"/><br/>
-
-<img src="https://github.com/babylikebird/common-admin/blob/master/art/6.png"/><br/>
-
-<img src="https://github.com/babylikebird/common-admin/blob/master/art/7.png"/><br/>
+##账号
+super:super
+admin:admin
+test:test
