@@ -80,7 +80,7 @@
                     var json = JSON.parse(data);
                     if (json.status) {
                         $("#lgModal").modal('hide');
-                        alertMsg("添加成功", "success");
+                        alertMsg(json.msg, "success");
                         reloadCompanyList();
                     } else {
                         alertMsg("添加失败:" + json.msg, "success");

@@ -25,8 +25,18 @@ public class CompanyServiceImpl implements CompanyService {
     private CompanyMapper companyMapper;
 
     @Override
-    public int insert(Company company) {
-        return companyMapper.insert(company);
+    public Result<Integer> insert(Company company) {
+        Result<Integer> result = new Result<>();
+        try {
+            companyMapper.insert(company);
+            result.setStatus(true);
+            result.setMsg("添加成功!");
+            result.setCode(MsgCode.SUCCESS);
+        } catch (Exception e) {
+            result.setStatus(false);
+            result.setMsg("系统内部错误!");
+        }
+        return result;
     }
 
     @Override

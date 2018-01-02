@@ -55,7 +55,7 @@ public class CompanyController {
                                           @RequestParam(value = "length", defaultValue = "10") int pageSize,
                                           Company company) {
         PageInfo<Company> pageInfo = companyService.listForPage((start / pageSize) + 1, pageSize, company);
-        return new PageBean<Company>(pageInfo);
+        return new PageBean<>(pageInfo);
     }
 
     /**
@@ -86,25 +86,19 @@ public class CompanyController {
         company.setCreateTime(new Date());
         company.setCreateUser("" + user.getId());
         company.setIsDelete(0);
-        Result<Integer> result = new Result<>();
-        try {
-            int i = companyService.insert(company);
-            if (i > 0) {
-                result.setStatus(true);
-                result.setMsg("OK");
-                result.setCode(MsgCode.SUCCESS);
-            } else {
-                result.setMsg("保存失败");
-            }
-        } catch (Exception e) {
-            result.setMsg("保存失败");
-        }
-
+        Result result = companyService.insert(company);
         return result;
     }
 
-    @RequestMapping(value = "view/{id}",method = RequestMethod.GET)
-    public ModelAndView view(@PathVariable String id, ModelAndView mv){
+    /**
+     * 查看
+     *
+     * @param id 主键
+     * @param mv 模型视图
+     * @return
+     */
+    @RequestMapping(value = "view/{id}", method = RequestMethod.GET)
+    public ModelAndView view(@PathVariable String id, ModelAndView mv) {
         Result<Company> result = companyService.selectByPrimaryKey(id);
         mv.addObject("bean", result.getData());
         mv.setViewName("/system/company/view");
