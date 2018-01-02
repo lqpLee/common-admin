@@ -1,6 +1,9 @@
 package com.server.company.service.impl;
 
 
+import com.common.system.entity.RcRole;
+import com.common.system.util.MsgCode;
+import com.common.system.util.Result;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.server.company.entity.Company;
@@ -26,18 +29,26 @@ public class CompanyServiceImpl implements CompanyService {
         return companyMapper.insert(company);
     }
 
-    /**
-     * 分页查询
-     *
-     * @param pageNum
-     * @param pageSize
-     * @param company
-     * @return
-     */
     @Override
     public PageInfo<Company> listForPage(Integer pageNum, Integer pageSize, Company company) {
         PageHelper.startPage(pageNum, pageSize, true);
         List<Company> companyList = companyMapper.selectList(company);//自定义查询方法
         return new PageInfo<>(companyList);
+    }
+
+    @Override
+    public Result<Company> selectByPrimaryKey(String id) {
+        Result<Company> result = new Result<>();
+        Company company = companyMapper.selectByPrimaryKey(id);
+        if (company == null) {
+            result.setStatus(false);
+            result.setCode(MsgCode.FAILED);
+            result.setMsg("没有该公司");
+            return result;
+        }
+        result.setData(company);
+        result.setStatus(true);
+        result.setCode(MsgCode.SUCCESS);
+        return result;
     }
 }

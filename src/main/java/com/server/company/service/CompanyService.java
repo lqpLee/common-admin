@@ -1,5 +1,6 @@
 package com.server.company.service;
 
+import com.common.system.util.Result;
 import com.github.pagehelper.PageInfo;
 import com.server.company.entity.Company;
 
@@ -11,4 +12,6 @@ public interface CompanyService {
     int insert(Company company);
 
     PageInfo<Company> listForPage(Integer pageNum, Integer pageSize, Company company);
+
+    Result<Company> selectByPrimaryKey(String id);
 }
